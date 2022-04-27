@@ -104,8 +104,10 @@ def HookJeeves(myFunction, bound_max, bound_min, tau):
     #losujemy x i y pierwszego punktu
     x = random.random()
     y = random.random()
-    new_x = bound_min + (x * (bound_max - (bound_min)))
-    new_y = bound_min + (y * (bound_max - (bound_min)))
+    # new_x = bound_min + (x * (bound_max - (bound_min)))
+    # new_y = bound_min + (y * (bound_max - (bound_min)))
+    new_x = 0
+    new_y = 0
     fun_val = myFunction(new_x,new_y)
     prev_x = new_x
     prev_y = new_y
@@ -140,7 +142,7 @@ def HookJeeves(myFunction, bound_max, bound_min, tau):
 
 
 HookJeeves(f1, -5,5,1)
-HookJeeves(f2, -35,35,2)
+HookJeeves(f2, -35,35,1)
 
 
 # print('Funkcja Himmelblau\'a, algorytm RandomSearch: ')
