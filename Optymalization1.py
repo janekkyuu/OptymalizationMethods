@@ -78,10 +78,13 @@ def f2(x1, x2):
 # plt.show()
 
 def randomSearch(i,myFunction,bound_max, bound_min):
+    #losujemy x i y pierwszego punktu
     x = random.random()
     y = random.random()
+    #skalujemy do przedziałów
     new_x = bound_min + (x * (bound_max-(bound_min)))
     new_y = bound_min + (y * (bound_max-(bound_min)))
+    #okreslamy powyzszymi argumentami poczatkowa wartosc minimum
     min_x = new_x
     min_y = new_y
     min_f = f1(new_x,new_y)
@@ -98,7 +101,7 @@ def randomSearch(i,myFunction,bound_max, bound_min):
 
 
 def HookJeeves(myFunction, bound_max, bound_min, tau):
-    #randomize first point to start searching
+    #losujemy x i y pierwszego punktu
     x = random.random()
     y = random.random()
     new_x = bound_min + (x * (bound_max - (bound_min)))
@@ -108,25 +111,29 @@ def HookJeeves(myFunction, bound_max, bound_min, tau):
     prev_y = new_y
     #okreslamy dlugosc skoku
     while (tau > 0.000000000000000000000000000000000001):
+        #sprawdzamy i porownujemy wartosci funkcji dla przesuniecia o tau na osi x
         right_fun_val = myFunction(new_x+tau, new_y)
         left_fun_val = myFunction(new_x-tau, new_y)
+        #dla mniejszej wartosci funkcji okreslamy x+tau jako kolejny
         if(right_fun_val <= left_fun_val):
             new_x = new_x+tau
         else:
             new_x = new_x-tau
-
+        #analogicznie sprawdzamy dla osi y przesuniecie o tau
         up_fun_val = myFunction(new_x, new_y+tau)
         down_fun_val = myFunction(new_x, new_y-tau)
         if(up_fun_val <= down_fun_val):
             new_y = new_y+tau
         else:
             new_y = new_y-tau
-
+        #sprawdzamy czy wartosc nowego punktu o wspolrzednych po przesunieciu o tau jest mniejsza od poprzedniej
+        #jesli tak, przenosimy przypisujemy wartosci nowych argumentow
         if(myFunction(new_x,new_y) < myFunction(prev_x,prev_y)):
             prev_x = new_x
             prev_y = new_y
             new_x = new_x + tau
             new_y = new_y + tau
+        #jesli nie, zmniejszamy dlugosc skoku
         else:
             tau *= 0.7
     print (new_x, "   ", new_y, "   ", myFunction(new_x,new_y))
